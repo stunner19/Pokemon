@@ -3,14 +3,16 @@ import './Pokecard.css';
 
 class Pokecard extends Component {
     render(){
-        const POKE_API = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-        let source = `${POKE_API}${this.props.id}.png`
+        const POKE_API = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/';
+        let padToThree = (number) => (number <= 999 ? `00${number}`.slice(-3) : number);
+
+        let source = `${POKE_API}${padToThree(this.props.id)}.png`
         return(
             <div className = "Pokecard">
-                <h3>{this.props.name}</h3>
+                <h3 className = "Pokecard-title">{this.props.name}</h3>
                 <img src = {source} alt = {this.props.name} />
-                <p>Type : {this.props.type}</p>
-                <p>EXP : {this.props.base_experience}</p>
+                <p className = "Pokecard-data">Type : {this.props.type}</p>
+                <p className = "Pokecard-data">EXP : {this.props.base_experience}</p>
             </div>
         );
     }
